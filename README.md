@@ -1,3 +1,20 @@
+Provide a basic GUI for accessing CLI tools that I keep forgetting the commands for
+
+This is currently set up to my specific windows usage.
+
+Needless to say, this is a personal project and not intended for public use.
+
+If you use this for yourself only download your own media that you are unable to do so in bulk otherwise.
+
+Respect copyright and terms of service of media providers.
+
+-[x] Checks the system clipboard for commands
+-[x] Lets you select an output folder for them
+-[ ] Should probably do some set up if you don't have the commands ready
+
+Q: Why kotliln Multiplatform?
+A: Because I wanted to learn kotlin more and I dont want to use electron
+
 This is a Kotlin Multiplatform project targeting Desktop (JVM).
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.

@@ -85,25 +85,6 @@ fun App() {
 
             }
 
-            Button(onClick = {
-                cli.printOsInfo()
-                val commands = listOf("C:\\yt-dlp.exe", "https://www.youtube.com/watch?v=hKOPjNy2-tI")
-                Cli.runCommand(commands)
-                showContent = !showContent
-            }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
-
             Text("Selected folder: $outputFolderState")
             Button(onClick = {
                 coroutineScope.launch {
