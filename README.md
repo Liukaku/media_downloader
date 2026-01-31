@@ -8,9 +8,9 @@ If you use this for yourself only download your own media that you are unable to
 
 Respect copyright and terms of service of media providers.
 
--[x] Checks the system clipboard for commands
--[x] Lets you select an output folder for them
--[ ] Should probably do some set up if you don't have the commands ready
+- [x] Checks the system clipboard for commands
+- [x] Lets you select an output folder for them
+- [ ] Should probably do some set up if you don't have the commands ready
 
 Q: Why kotliln Multiplatform?
 A: Because I wanted to learn kotlin more and I dont want to use electron
