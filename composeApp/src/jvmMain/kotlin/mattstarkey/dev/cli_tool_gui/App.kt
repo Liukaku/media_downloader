@@ -68,7 +68,6 @@ fun App() {
     }
 
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
         var inputTextState by remember { mutableStateOf("") }
         var outputFolderState by remember { mutableStateOf("") }
         Column(
@@ -125,13 +124,20 @@ fun App() {
 
                         resetConsoleOutput("Starting download...\n") // Reset or append
 
-                        val result = Cli.runCommand(
-                            command = commands,
-                            onStdout = { consoleOutput += it }, // Minimal change: append directly
-                            onStderr = { consoleOutput += it }
-                        )
-
-                        println("Process exited with code: ${result.exitCode}")
+//                        val result = Cli.runCommand(
+//                            command = commands,
+//                            onStdout = { consoleOutput += it }, // Minimal change: append directly
+//                            onStderr = { consoleOutput += it }
+//                        )
+//                        println("Process exited with code: ${result.exitCode}")
+                        coroutineScope.launch(Dispatchers.IO) {
+                            val result = Cli.runCommand(
+                                command = commands,
+                                onStdout = { consoleOutput += it }, // Minimal change: append directly
+                                onStderr = { consoleOutput += it }
+                            )
+                            consoleOutput += ("\n Process exited with code: ${result.exitCode} \n")
+                        }
                     }
                 }
             )
