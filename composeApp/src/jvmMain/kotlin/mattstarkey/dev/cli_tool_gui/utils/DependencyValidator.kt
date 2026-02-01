@@ -2,17 +2,21 @@ package mattstarkey.dev.cli_tool_gui.utils
 
 class DependencyValidator {
 
-       suspend fun startUpChecks(): List<StartupErrors> {
-            var errors = mutableListOf<StartupErrors>()
+       fun startUpChecks(): List<StartupErrors> {
+           println("Starting dependency checks...")
+           val errors = mutableListOf<StartupErrors>()
            try {
                val galleryCheck = Cli.runCommand(
                    command = listOf("gallery-dl", "--version"),
                )
+               println(galleryCheck)
                val invalidCmd = extractInvalidCommand(galleryCheck)
                 if (invalidCmd != null) {
                      println("how did we get here $invalidCmd")
+                    errors.add(StartupErrors.MISSING_GALLERY_DL)
                 }
            } catch (e: Exception) {
+               println(e.message)
                errors.add(StartupErrors.MISSING_GALLERY_DL)
            }
 
@@ -24,6 +28,7 @@ class DependencyValidator {
 
                if (invalidYtCmd != null) {
                     println("how did we get here $invalidYtCmd")
+                   errors.add(StartupErrors.MISSING_YT_DLP)
                }
            } catch (e: Exception) {
                errors.add(StartupErrors.MISSING_YT_DLP)
@@ -57,7 +62,7 @@ class DependencyValidator {
                 }
             }
 
-            return null
+            return "Unknown error format ${result.exitCode}"
         }
 
 }
@@ -66,3 +71,8 @@ enum class StartupErrors {
     MISSING_GALLERY_DL,
     MISSING_YT_DLP,
 }
+
+val requirements = mapOf(
+    StartupErrors.MISSING_GALLERY_DL to "GALLERY_DL",
+    StartupErrors.MISSING_YT_DLP to "YT_DLP",
+)
